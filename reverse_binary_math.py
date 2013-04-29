@@ -1,33 +1,21 @@
-def get_binary_from_num(num_input):
-    bin_num = 0
-    for count in range(num_input):
-        bin_num = inc_binary(bin_num)
-    return bin_num
+import math
 
-def inc_binary(num_input):
-    if num_input % 10 == 0:
-        return num_input + 1
+def get_binary_from_num(num_input, bin_num=0):
+    if num_input == 0:
+        return bin_num
     else:
-        return inc_binary(num_input / 10) * 10
+        log2_base = int(math.log(num_input, 2))
+        return get_binary_from_num(num_input - 2 ** log2_base, bin_num + 10 ** log2_base)
 
 def reverse_number(num_input):
-    num_string = ""
-    for digit in reversed(str(num_input)):
-        num_string += digit
-    return int(num_string)
+    return int("".join(reversed(str(num_input))))
 
-def get_number_from_bin(num_input):
-    counter = 0
-    while num_input > 0:
-        num_input = dec_binary(num_input)
-        counter += 1
-    return counter
-
-def dec_binary(num_input):
-    if num_input % 10 == 1:
-        return num_input - 1
+def get_number_from_bin(num_input, dec_num=0):
+    if num_input == 0:
+        return dec_num
     else:
-        return dec_binary(num_input / 10) * 10 + 1
+        log10_base = int(math.log10(num_input))
+        return get_number_from_bin(num_input - 10 ** log10_base, dec_num + 2 ** log10_base)
 
 def reverse_binary(num_input):
     bin_num = get_binary_from_num(num_input)
@@ -43,7 +31,6 @@ assert get_binary_from_num(4) == 100
 assert get_binary_from_num(5) == 101
 assert get_binary_from_num(13) == 1101
 assert get_binary_from_num(133) == 10000101
-print get_binary_from_num(16393656)
 
 assert reverse_number(4321) == 1234
 
