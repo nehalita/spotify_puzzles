@@ -2,14 +2,11 @@ def get_binary_from_num(num_input):
     full_bin = bin(num_input)
     return full_bin[2:]
 
-def reverse_number(num_input):
-    num_str = ""
-    for digit in reversed(num_input):
-        num_str += digit
-    return num_str
+def reverse_number(bin_str):
+    return "".join(reversed(bin_str))
 
-def get_number_from_bin(num_input):
-    return int(num_input,2)
+def get_number_from_bin(rev_bin_str):
+    return int(rev_bin_str,2)
 
 def reverse_binary(num_input):
     bin_str = get_binary_from_num(num_input)
@@ -17,6 +14,8 @@ def reverse_binary(num_input):
     rev_bin_num = get_number_from_bin(rev_str)
     return rev_bin_num
 
+
+#TESTS
 assert get_binary_from_num(0) == '0'
 assert get_binary_from_num(1) == '1'
 assert get_binary_from_num(2) == '10'
